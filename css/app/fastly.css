@@ -131,7 +131,7 @@ a:active {
 .resource-view .resource-list {
     border-top: 1px solid #a5a5a5;
     border-bottom: 1px solid #a5a5a5;
-    background: transparent url("../images/interface/empty_diagonal.png") top left
+    background: transparent url("../../images/interface/empty_diagonal.png") top left
 }
 
 .resource-view .resource-list .resource-entry {
@@ -570,7 +570,7 @@ body.modal-open>#zenbox_tab {
 }
 
 .navbar-inverse {
-    background: #e00000 url("../images/app.header.png") repeat;
+    background: #e00000 url("../../images/app.header.png") repeat;
     background-size: 50%;
     box-shadow: 0px 0px 1px #333333;
     border-radius: 0
@@ -908,7 +908,7 @@ body.modal-open>#zenbox_tab {
 }
 
 #content>div.page.with-sidebar {
-    background: transparent url("../images/sidebar.png") top left repeat-y;
+    background: transparent url("../../images/sidebar.png") top left repeat-y;
     margin: 0
 }
 
@@ -1211,7 +1211,7 @@ legend.reset {
     height: 24px;
     overflow: hidden;
     text-indent: -9999px;
-    background: transparent url("../images/credit_cards.png") top left no-repeat;
+    background: transparent url("../../images/credit_cards.png") top left no-repeat;
     margin-right: 8px;
     margin-top: -4px
 }
@@ -1312,7 +1312,7 @@ legend.reset {
     width: 54px;
     height: 30px;
     margin-right: 18px;
-    background: transparent url("../images/regions_map.png") top left no-repeat;
+    background: transparent url("../../images/regions_map.png") top left no-repeat;
     float: left
 }
 
@@ -1655,7 +1655,7 @@ body.dark .varnish_stats .title {
 }
 
 .analytics_demo h2 .signup>span {
-    background: url("../images/signup.png") no-repeat;
+    background: url("../../images/signup.png") no-repeat;
     background-size: 25px 27px;
     display: inline-block;
     height: 27px;
@@ -2091,7 +2091,7 @@ body.dark #heatmap .bar.miss_latency {
 }
 
 #configure_overview {
-    background: #f6f6f6 url(../images/overview_background.png) top left repeat-y !important
+    background: #f6f6f6 url(../../images/overview_background.png) top left repeat-y !important
 }
 
 #configure_overview .header,#configure_editor .header {
@@ -3388,7 +3388,7 @@ a.try-fastly:hover {
     width: 16px;
     height: 16px;
     margin-top: 2px;
-    background: transparent url("../images/row_loading.gif") top left no-repeat
+    background: transparent url("../../images/row_loading.gif") top left no-repeat
 }
 
 #wizard ul {
@@ -3526,7 +3526,7 @@ a.try-fastly:hover {
     font-weight: normal;
     font-size: 12px;
     float: right;
-    margin-right: 70px
+    margin-right: 30px
 }
 
 #historical_stats h3.stats-header .stats-controls>button {
@@ -4545,9 +4545,4 @@ a.try-fastly:hover {
 
 .security #codes {
     font-family: Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace
-}
-
-.showArea {
-    height: 450px;
-    width: 690px;
 }

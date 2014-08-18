@@ -1,40 +1,33 @@
-//$(function() {
-//    var deviceUrl = 'http://idcapi.uunus.com/devices';
-//    ajaxGetData(deviceUrl, ajaxShowDevices, ajaxFailedCallback);
-//});
+function getDeviceTable() {
+    var deviceUrl = 'http://idcapi.uunus.com/devices/';
+    ajaxGetData(deviceUrl, ajaxCreateDevicesTable, ajaxFailedCallback);
+}
 
-// Get Ajax data from post value
-function ajaxGetData(url, callbackFunc, failedFunc) {
-    $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: "json",
-        cache: false,
-        crossDomain: true,
-        xhrFields: {
-            withCredentials: false
-        },
-        success: callbackFunc,
-        error: failedFunc,
-        timeout: 5000
+
+// Process ajax success callback
+function ajaxCreateDevicesTable(response) {
+    var deviceData = response['data'];
+    var $deviceTable = $('#deviceTable');
+    var active_class = 'selected';
+
+    createDeviceTable($deviceTable, deviceData, active_class);
+    onFoucsInput($deviceTable);
+}
+
+function onFoucsInput($table) {
+    var $floatTable = $table.closest('.floatTable');
+    var $header = $table.closest('.floatTable').find('th');
+    var $input = $floatTable.closest('.search-box').find('.search-box-input');
+
+    $input.on('focus', function() {
+        // Fix dataTable header bug
+        $floatTable.fadeIn(500);
+        $header.click();
     });
 }
 
-// Process ajax failed callback
-function ajaxFailedCallback(request) {
-    alert( "请求 Ajax: " + this.url + " 失败!");
-}
-
-// Process ajax success callback
-function ajaxShowDevices(response) {
-    var deviceData = response['data'];
-    var $deviceTable = $('#deviceTable');
-    createDeviceTable($deviceTable, deviceData);
-    onClickDeviceTable($deviceTable);
-}
-
 // create device table
-function createDeviceTable($deviceTable, deviceData) {
+function createDeviceTable($deviceTable, deviceData, active_class) {
 
     var tableData = [];
 
@@ -47,10 +40,10 @@ function createDeviceTable($deviceTable, deviceData) {
 
     $deviceTable.dataTable({
         "info" : false,
-        "scrollY": "300px",
-        "scrollCollapse": true,
         "paging": false,
         "destroy": true,
+        "scrollY": "400px",
+        "scrollCollapse": true,
         "data": tableData,
         "columns": [
             { "title": "设备名称", "class": "center" },
@@ -59,22 +52,31 @@ function createDeviceTable($deviceTable, deviceData) {
         ]
     });
 
-    addFilter($deviceTable);
+    registerFilter($deviceTable, active_class);
+    registerTableClick($deviceTable, active_class);
 }
 
 // listen on click device table
-function onClickDeviceTable(deviceTable) {
-    deviceTable.children('tbody').on('click', 'tr', function () {
+function registerTableClick($table, active_class) {
+    $table.children('tbody').on('click', 'tr', function () {
 
         // Check if it is already selected
-        if($(this).hasClass('success')) {
+        if($(this).hasClass(active_class)) {
             return;
         }
 
-        $(this).siblings().removeClass('success');
-        $(this).addClass('success');
+        $(this).siblings().removeClass(active_class);
+        $(this).addClass(active_class);
         var device_name = $('td', this).eq(0).text();
-        createPortTable(device_name)
+
+        var $realTable = $table.closest('.floatTable');
+
+        $realTable.hide();
+
+        var $input = $table.closest('.search-box').find('.search-box-input');
+        var $control = $table.closest('.toolbar-control');
+        $control.children().hide();
+        $control.append('<label>' + device_name + '</label>');
     });
 }
 
@@ -152,17 +154,14 @@ function updatePortTable($portTable, portData) {
 }
 
 // add filter input for table
-function addFilter($filterTable) {
-    var $filter = $filterTable.closest('.tableClass').find('.searchFilter');
-    var $input = $filter.find('input');
-    var $allTableRows = $filterTable.find('tr');
+function registerFilter($filterTable, active_class) {
 
-    // add success class to selected row
-    $filter.addClass('active');
+    var $input = $filterTable.closest('.search-box').find('.search-box-input');
+    var $allTableRows = $filterTable.find('tr');
 
     $input.focus(function() {
         // remove all selected class
-        $allTableRows.removeClass('success');
+        $allTableRows.removeClass(active_class);
 
         // clear input text
         $(this).val('');
@@ -170,15 +169,15 @@ function addFilter($filterTable) {
         // clear filter vaule
         $filterTable.fnFilter('');
 
-        if($filterTable.attr('id') == 'deviceTable') {
-
-            var $realTable = $('#portTable').closest('.dataTables_scroll');
-
-            if($realTable.is(":visible")) {
-                $realTable.fadeOut('fast');
-            }
-
-        }
+//        if($filterTable.attr('id') == 'deviceTable') {
+//
+//            var $realTable = $('#portTable').closest('.dataTables_scroll');
+//
+//            if($realTable.is(":visible")) {
+//                $realTable.fadeOut('fast');
+//            }
+//
+//        }
     });
 
     // prevent default form submit when press enter key
@@ -195,13 +194,13 @@ function addFilter($filterTable) {
             if(filterRows.length > 0) {
                 var firstRow = filterRows[0];
                 $(firstRow).click();
-                $(firstRow).addClass('success');
+                $(firstRow).addClass(active_class);
             }
         }
 
         // when press delete, clean select success
         if(e.keyCode == 8) {
-            $allTableRows.removeClass('success');
+            $allTableRows.removeClass(active_class);
         }
     });
 }

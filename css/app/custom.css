@@ -1,0 +1,17 @@
+.dataTables_filter {
+    display: none;
+}
+
+.showArea {
+    height: 450px;
+    width: 690px;
+}
+
+.floatTable {
+    position: absolute;
+    top: 35px;
+    width: 600px;
+    height: 400px;
+    z-index: 1;
+    display: none;
+}

@@ -1,9 +1,13 @@
-<html>
+<!doctype html>
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
     <title>Port Billing</title>
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/datatable/jquery.dataTables.css" type="text/css">
+    <link rel="stylesheet" href="css/app/fastly.css" type="text/css">
+    <link rel="stylesheet" href="css/app/custom.css" type="text/css">
 </head>
 
 <body>
@@ -36,46 +40,58 @@
     <div id="content">
         <div id="historical_stats" class="page">
 
-<!--
+
 <div class="toolbar">
+
     <div class="toolbar-control pull-left">
-        <label class="pull-left">Service</label>
-        <div data-name="service_id" data-value="1k3rYkgMlKoABDQi2FzFiD" class="service-search search-box pull-left">
-            <input class="search-box-input" style="width: 126px;" value="website" autocomplete="off">
-            <button class="btn btn-search-box"><span class="glyphicon glyphicon-chevron-down"></span></button>
-            <div class="search-box-results" style="display: none;"></div><input class="search-box-state" type="hidden" name="service_id" value="1k3rYkgMlKoABDQi2FzFiD"></div>
+        <label class="pull-left">设备</label>
+        <div class="service-search search-box pull-left">
+            <input class="search-box-input" style="width: 126px;" placeholder="输入设备名或 IP">
+            <button class="btn btn-search-box">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+
+            <div class="floatTable">
+                <table id="deviceTable" class="display compact" cellspacing="0" width="100%"></table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="toolbar-control pull-left">
+        <label class="pull-left">端口</label>
+        <div class="service-search search-box pull-left">
+            <input class="search-box-input" style="width: 126px;" placeholder="输入端口名称如: 2/0/0 ">
+            <button class="btn btn-search-box">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+
+            <div class="floatTable">
+                <table id="portTable" class="display compact" cellspacing="0" width="100%"></table>
+            </div>
+        </div>
     </div>
 
     <div class="toolbar-control pull-left">
         <span class="glyphicon glyphicon-calendar"></span>
-        <span class="date-control">2014-02-14 10:01 to 2014-08-14 10:01</span>
+        <label class="pull-left">日期</label>
+        <span class="date-control" style="width: 126px;">本月</span>
     </div>
 
     <div class="toolbar-control pull-left" data-toggle="tooltip" title="Sampling Rate">
         <label class="pull-left">
-            Sample By
+            <span class="glyphicon glyphicon-globe"></span>
         </label>
-        <select name="by" class="form-control pull-left" style="width: 100px;">
+        <select name="by" class="form-control pull-left" style="width: 126px;">
             <option value="day" selected="">Day</option>s
             <option value="hour">Hour</option>
             <option value="minute">Minute</option>
         </select>
     </div>
 
-    <div class="toolbar-control pull-right">
-        <label class="pull-left">
-            <span class="glyphicon glyphicon-globe"></span>
-        </label>
-        <select name="region" class="form-control pull-left" style="width: 100px">
-            <option value="all">Global</option>
-            <option value="usa">USA</option>
-            <option value="europe">Europe</option>
-            <option value="asia">Asia</option>
-            <option value="anzac">Aus/NZ</option>
-        </select>
-    </div>
 </div>
--->
+
 
 <!--
 <div class="info">
@@ -151,9 +167,14 @@
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/jquery/jquery-ui.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
+
+<script src="js/datatable/jquery.dataTables.min.js"></script>
+<script src="js/app/table.js"></script>
+
 <script src="js/highchart/highstock.js"></script>
 <script src="js/highchart/highstocktheme.js"></script>
 <script src="js/app/chart.js"></script>
+
 <script src="js/app/app.js"></script>
 
 </body>
