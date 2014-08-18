@@ -1,0 +1,161 @@
+<html>
+<head>
+    <title>Port Billing</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+</head>
+
+<body>
+
+<header class="navbar navbar-inverse" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" title="Fastly" class="navbar-brand">
+                <img src="images/fastly_logo.png">
+            </a>
+        </div>
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-left menu-icons">
+                <li class="stats selected">
+                    <a href="#billing" class="glyphicon glyphicon-stats"></a>
+                    <a href="#billing" class="menu-label">计费</a>
+                </li>
+
+                <li class="analytics">
+                    <a href="#setting" class="glyphicon glyphicon-list"></a>
+                    <a href="#setting" class="menu-label">设置</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div id="wrapper" class="container">
+    <div id="content">
+        <div id="historical_stats" class="page">
+
+<!--
+<div class="toolbar">
+    <div class="toolbar-control pull-left">
+        <label class="pull-left">Service</label>
+        <div data-name="service_id" data-value="1k3rYkgMlKoABDQi2FzFiD" class="service-search search-box pull-left">
+            <input class="search-box-input" style="width: 126px;" value="website" autocomplete="off">
+            <button class="btn btn-search-box"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            <div class="search-box-results" style="display: none;"></div><input class="search-box-state" type="hidden" name="service_id" value="1k3rYkgMlKoABDQi2FzFiD"></div>
+    </div>
+
+    <div class="toolbar-control pull-left">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="date-control">2014-02-14 10:01 to 2014-08-14 10:01</span>
+    </div>
+
+    <div class="toolbar-control pull-left" data-toggle="tooltip" title="Sampling Rate">
+        <label class="pull-left">
+            Sample By
+        </label>
+        <select name="by" class="form-control pull-left" style="width: 100px;">
+            <option value="day" selected="">Day</option>s
+            <option value="hour">Hour</option>
+            <option value="minute">Minute</option>
+        </select>
+    </div>
+
+    <div class="toolbar-control pull-right">
+        <label class="pull-left">
+            <span class="glyphicon glyphicon-globe"></span>
+        </label>
+        <select name="region" class="form-control pull-left" style="width: 100px">
+            <option value="all">Global</option>
+            <option value="usa">USA</option>
+            <option value="europe">Europe</option>
+            <option value="asia">Asia</option>
+            <option value="anzac">Aus/NZ</option>
+        </select>
+    </div>
+</div>
+-->
+
+<!--
+<div class="info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Displaying <strong class="count">0</strong> records from
+    <strong class="from">February 14, 2014</strong> to
+    <strong class="to">August 14, 2014</strong> sampled by
+    <strong class="by">day</strong>.
+</div>
+-->
+
+            <div class="stats-rows">
+                <div class="hit-ratio">
+                    <h3 class="stats-header">
+                        Hit Ratio
+                        <div class="stats-controls">
+                            <button class="help btn btn-default btn-md" data-original-title="" title="">
+                                <span class="glyphicon glyphicon-info-sign"></span>&nbsp;数据
+                            </button>
+
+                            <button class="image btn btn-default btn-md">
+                                <span class="glyphicon glyphicon-camera"></span>&nbsp;图形
+                            </button>
+                        </div>
+                    </h3>
+
+                    <div class="stats-row">
+
+                        <div class="col-left">
+                            <div class="statistic" data-name="hit_ratio">
+                                <div class="statistic-check hit_ratio" data-state="on">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </div>
+                                Hit Ratio
+
+                                <span class="statistic-specifics">
+                                    <span class="statistic-value">0%</span>
+                                    <span class="statistic-type" style="display: inline;">avg</span>
+                                    <span class="dropdown statistic-menu" style="display: inline;">
+                                        <button type="button" class="btn btn-default" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-chevron-down"></span>
+                                        </button>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+                                            <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+                                            <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+                                            <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+                                        </ul>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-right">
+                            <div class="showArea"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="footer">
+    Copyright &copy; JYYL.Inc 2014 All Rights Reserved
+</div>
+
+
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/jquery/jquery-ui.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/highchart/highstock.js"></script>
+<script src="js/highchart/highstocktheme.js"></script>
+<script src="js/app/chart.js"></script>
+<script src="js/app/app.js"></script>
+
+</body>
+
+</html>

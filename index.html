@@ -1,0 +1,926 @@
+<html>
+<head>
+    <title>Port Billing</title>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/epoch.css" type="text/css">
+    <!--<link rel="stylesheet" href="css/ace.css" type="text/css">-->
+    <!--<link rel="stylesheet" href="css/datapicker.css" type="text/css">-->
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="framework.min.js"></script>-->
+    <!--<script src="sierra.min.js"></script>-->
+
+<body>
+
+<div id="layout">
+
+<header class="navbar navbar-inverse" role="banner">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a href="#" target="_blank" title="Fastly" class="navbar-brand">
+                <img src="images/fastly_logo.png">
+            </a>
+        </div>
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-left menu-icons">
+
+                <li class="analytics">
+                    <a href="#analytics" class="glyphicon glyphicon-list"></a>
+                    <a href="#analytics" class="menu-label">analytics</a>
+                </li>
+
+                <li class="stats selected">
+                    <a href="#stats" class="glyphicon glyphicon-stats"></a>
+                    <a href="#stats" class="menu-label">stats</a>
+                </li>
+
+                <li class="billing">
+                    <a href="#billing" class="glyphicon glyphicon-billing"></a>
+                    <a href="#billing" class="menu-label">billing</a>
+                </li>
+
+            </ul>
+
+            <div id="user_box">
+                <a class="logout" href="https://app.fastly.com/logout" title="Logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </a>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+<div id="status_alert"></div>
+
+<div id="wrapper" class="container">
+<div id="content"><div id="historical_stats" class="page">
+<div class="toolbar">
+
+    <div class="toolbar-control pull-left">
+        <label class="pull-left">Service</label>
+        <div data-name="service_id" data-value="1k3rYkgMlKoABDQi2FzFiD" class="service-search search-box pull-left">
+            <input class="search-box-input" style="width: 126px;" value="website" autocomplete="off">
+            <button class="btn btn-search-box"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            <div class="search-box-results" style="display: none;"></div><input class="search-box-state" type="hidden" name="service_id" value="1k3rYkgMlKoABDQi2FzFiD"></div>
+    </div>
+
+
+    <div class="toolbar-control pull-left">
+        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="date-control">2014-02-14 10:01 to 2014-08-14 10:01</span>
+    </div>
+
+    <div class="toolbar-control pull-left" data-toggle="tooltip" title="Sampling Rate">
+        <label class="pull-left">
+            Sample By
+        </label>
+        <select name="by" class="form-control pull-left" style="width: 100px;">
+            <option value="day" selected="">Day</option>s
+            <option value="hour">Hour</option>
+            <option value="minute">Minute</option>
+        </select>
+    </div>
+
+    <div class="toolbar-control pull-right">
+        <label class="pull-left">
+            <span class="glyphicon glyphicon-globe"></span>
+        </label>
+        <select name="region" class="form-control pull-left" style="width: 100px">
+            <option value="all">Global</option>
+            <option value="usa">USA</option>
+            <option value="europe">Europe</option>
+            <option value="asia">Asia</option>
+            <option value="anzac">Aus/NZ</option>
+        </select>
+    </div>
+</div>
+
+<div class="info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Displaying <strong class="count">0</strong> records from
+    <strong class="from">February 14, 2014</strong> to
+    <strong class="to">August 14, 2014</strong> sampled by
+    <strong class="by">day</strong>.
+</div>
+
+<div class="stats-rows">
+<div class="warnings"></div>
+
+<div stat-row="" class="hit-ratio"><h3 class="stats-header">
+    Hit Ratio
+    <div class="stats-controls">
+
+        <button class="zoom btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-zoom-in"></span> zoom y-axis
+        </button>
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="hit_ratio">
+                <div class="statistic-check hit_ratio" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Hit Ratio
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0%</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch variance-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="110"><g transform="translate(50, 6)"><g class="layer category1 hit_ratio"><path class="line"></path></g><g class="x axis bottom" transform="translate(0, 79)"><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">NaN%</text></g><path class="domain" d="M-6,0H0V79H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">NaN%</text></g><path class="domain" d="M6,0H0V79H6"></path></g><rect class="events-shield" opacity="0" width="558" height="79"></rect></g><line display="none" stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="85" style="pointer-events: none;"></line></svg><div class="graph-tooltip" style="bottom: 116px;"></div></div>
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="110"><g transform="translate(50, 6)"><g class="layer category1 hit_ratio"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 79)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">0%</text></g><g class="tick major" transform="translate(0,39.5)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">50%</text></g><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">100%</text></g><path class="domain" d="M-6,0H0V79H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">0%</text></g><g class="tick major" transform="translate(0,39.5)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">50%</text></g><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">100%</text></g><path class="domain" d="M6,0H0V79H6"></path></g><rect class="events-shield" opacity="0" width="558" height="79"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="85" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 116px; left: 165px;">2014-03-24T04:58:13+08:00</div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="cache-coverage"><h3 class="stats-header">
+    Cache Coverage
+    <div class="stats-controls">
+
+        <button class="zoom btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-zoom-in"></span> zoom y-axis
+        </button>
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="cache_coverage">
+                <div class="statistic-check cache_coverage" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Cache Coverage
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0%</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch variance-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="110"><g transform="translate(50, 6)"><g class="layer category1 cache_coverage"><path class="line"></path></g><g class="x axis bottom" transform="translate(0, 79)"><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">NaN%</text></g><path class="domain" d="M-6,0H0V79H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">NaN%</text></g><path class="domain" d="M6,0H0V79H6"></path></g><rect class="events-shield" opacity="0" width="558" height="79"></rect></g><line display="none" stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="85" style="pointer-events: none;"></line></svg><div class="graph-tooltip" style="bottom: 116px;"></div></div>
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="110"><g transform="translate(50, 6)"><g class="layer category1 cache_coverage"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 79)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">0%</text></g><g class="tick major" transform="translate(0,39.5)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">50%</text></g><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">100%</text></g><path class="domain" d="M-6,0H0V79H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">0%</text></g><g class="tick major" transform="translate(0,39.5)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">50%</text></g><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">100%</text></g><path class="domain" d="M6,0H0V79H6"></path></g><rect class="events-shield" opacity="0" width="558" height="79"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="85" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 116px; left: 274px;">2014-04-28T13:31:46+08:00</div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="caching-overview"><h3 class="stats-header">
+    Caching Overview
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="hits">
+                <div class="statistic-check hits" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Hits
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="miss">
+                <div class="statistic-check miss" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Misses
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="synth">
+                <div class="statistic-check synth" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Synthetic
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="pass">
+                <div class="statistic-check pass" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Passes
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 hits"><path class="area"></path></g><g class="layer category2 miss"><path class="area"></path></g><g class="layer category3 synth"><path class="area"></path></g><g class="layer category4 pass"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px; left: 587px;">2014-08-08T02:13:03+08:00</div></div>
+        </div>
+    </div></div>
+
+<div stat-row="" class="requests"><h3 class="stats-header">
+    Requests
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="requests">
+                <div class="statistic-check requests" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Requests
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 requests"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px; left: 340px;">2014-05-19T23:20:09+08:00</div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="bandwidth"><h3 class="stats-header">
+    Bandwidth
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="bandwidth">
+                <div class="statistic-check bandwidth" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Bandwidth
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0 B</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 bandwidth"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px;"></div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="bandwidth-breakdown"><h3 class="stats-header">
+    Header &amp; Body Bandwidth
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="header_size">
+                <div class="statistic-check header_size" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Header
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="body_size">
+                <div class="statistic-check body_size" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Body
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 body_size"><path class="area"></path></g><g class="layer category2 header_size"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px;"></div></div>
+        </div>
+    </div></div>
+
+<div stat-row="" class="origin-latency"><h3 class="stats-header">
+    Origin Latency (ms)
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="origin_latency">
+                <div class="statistic-check origin_latency" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Origin Latency
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 origin_latency"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px;"></div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="error-ratio"><h3 class="stats-header">
+    Error Ratio
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="error_ratio">
+                <div class="statistic-check error_ratio" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Error Ratio
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0%</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="110"><g transform="translate(50, 6)"><g class="layer category1 error_ratio"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 79)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">0%</text></g><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">NaN%</text></g><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="-6" y2="0"></line><text x="-9" y="0" dy=".32em" style="text-anchor: end;">NaN%</text></g><path class="domain" d="M-6,0H0V79H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><g class="tick major" transform="translate(0,79)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">0%</text></g><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">NaN%</text></g><g class="tick major" transform="translate(0,NaN)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" dy=".32em" style="text-anchor: start;">NaN%</text></g><path class="domain" d="M6,0H0V79H6"></path></g><rect class="events-shield" opacity="0" width="558" height="79"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="85" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 116px;"></div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="success"><h3 class="stats-header">
+    HTTP Info, Success, &amp; Redirects (1XX, 2XX, 3XX)
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="status_1xx">
+                <div class="statistic-check status_1xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Info (1XX)
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="status_2xx">
+                <div class="statistic-check status_2xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Success (2XX)
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="status_3xx">
+                <div class="statistic-check status_3xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Redirect (3XX)
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 status_1xx"><path class="area"></path></g><g class="layer category2 status_2xx"><path class="area"></path></g><g class="layer category3 status_3xx"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px;"></div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="3xx-details"><h3 class="stats-header">
+    Status 3XX Details
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="status_301">
+                <div class="statistic-check status_301" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                301
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="status_302">
+                <div class="statistic-check status_302" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                302
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="status_304">
+                <div class="statistic-check status_304" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                304
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="other_3xx">
+                <div class="statistic-check other_3xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Other 3XX
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 status_301"><path class="area"></path></g><g class="layer category2 status_302"><path class="area"></path></g><g class="layer category3 status_304"><path class="area"></path></g><g class="layer category4 other_3xx"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px;"></div></div>
+        </div>
+    </div></div>
+<div stat-row="" class="errors"><h3 class="stats-header">
+    HTTP Client and Server Errors (4XX, 5XX)
+    <div class="stats-controls">
+
+        <button class="help btn btn-default btn-xs" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span> explain</button>
+        <button class="image btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span> png</button>
+    </div>
+</h3>
+    <div class="stats-row">
+        <div class="col-left">
+            <div class="statistic" data-name="status_4xx">
+                <div class="statistic-check status_4xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Status 4XX
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="status_503">
+                <div class="statistic-check status_503" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Status 503
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+            <div class="statistic" data-name="other_5xx">
+                <div class="statistic-check other_5xx" data-state="on">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+
+                Other 5XX
+
+  <span class="statistic-specifics">
+    <span class="statistic-value">0</span>
+    <span class="statistic-type" style="display: inline;">avg</span>
+    <span class="dropdown statistic-menu" style="display: inline;">
+      <button type="button" class="btn btn-default" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
+          <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+
+          <li role="presentation"><a role="menuitem" href="#" class="total">Total</a></li>
+
+      </ul>
+    </span>
+  </span>
+            </div>
+
+        </div>
+        <div class="col-right">
+            <div class="epoch stats-chart"><svg xmlns="http://www.w3.org/2000/svg" width="658" height="180"><g transform="translate(50, 6)"><g class="layer category1 status_503"><path class="area"></path></g><g class="layer category2 other_5xx"><path class="area"></path></g><g class="layer category3 status_4xx"><path class="area"></path></g><g class="x axis bottom" transform="translate(0, 149)"><g class="tick major" transform="translate(2.8228625690607734,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Feb 15</text></g><g class="tick major" transform="translate(61.39744820441988,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 6</text></g><g class="tick major" transform="translate(119.972033839779,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Mar 25</text></g><g class="tick major" transform="translate(178.54661947513813,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Apr 13</text></g><g class="tick major" transform="translate(237.12120511049721,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 2</text></g><g class="tick major" transform="translate(295.69579074585636,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">May 21</text></g><g class="tick major" transform="translate(354.27037638121544,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 9</text></g><g class="tick major" transform="translate(412.8449620165746,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jun 28</text></g><g class="tick major" transform="translate(471.41954765193367,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Jul 17</text></g><g class="tick major" transform="translate(529.9941332872928,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text y="9" x="0" dy=".71em" style="text-anchor: middle;">Aug 5</text></g><path class="domain" d="M0,6V0H558V6"></path></g><g class="y axis left"><path class="domain" d="M-6,0H0V149H-6"></path></g><g class="y axis right" transform="translate(558, 0)"><path class="domain" d="M6,0H0V149H6"></path></g><rect class="events-shield" opacity="0" width="558" height="149"></rect></g><line stroke="#333" stroke-opacity="0.75" stroke-width="1" y1="0" y2="155" style="pointer-events: none;" x1="166" x2="166" display="none"></line></svg><div class="graph-tooltip" style="bottom: 186px; left: 567px;">2014-08-01T14:31:07+08:00</div></div>
+        </div>
+    </div></div>
+
+</div>
+</div>
+</div>
+<div class="loading-overlay" style="width: 956px; height: 623px; top: 88px; display: none;">
+    <div class="loading-message">
+        <!-- <span class="glyphicon glyphicon-refresh icon-spin"></span> Loading... -->
+        <img src="images/row_loading.gif">
+    </div>
+</div>
+</div>
+
+<div id="footer">
+    Copyright © 2014 Fastly.com, All Rights Reserved
+    <br><a href="http://www.fastly.com/privacy">Fastly Privacy Policy</a>
+
+</div>
+
+<div id="global">
+    <div class="confirm"></div>
+</div>
+</div>
+
+</body>
+
+</html>
