@@ -1,25 +1,36 @@
+// create ajax port request
+function createPortChart(dev_name, port_name, month) {
+
+    var portChartUrl = 'http://idcapi.uunus.com/billing?where={'
+        + '"dev_name":"' + dev_name + '",'
+        + '"port_name":"' + port_name + '",'
+        + '"month":"' + month + '",'
+        + '"datetype":"' + 'month' + '"}';
+
+    ajaxGetData(portChartUrl, ajaxGenerateChart, ajaxFailedCallback);
+}
+
 // Generate chart from ajax data
 function ajaxGenerateChart(response) {
     var ifData = parseMonthData(response);
 
-    var port_name = 'Ethernet2/0/0';
+    var $portContainer = $('#portInput').closest('.acontainer');
+    var portName = $portContainer.children('input').last().val();
 
     if(ifData != undefined) {
         var chartData = [];
-        chartData.push({name: port_name + '入', data: ifData['ifInData']});
-        chartData.push({name: port_name + '出', data: ifData['ifOutData']});
+        chartData.push({name: portName + '入', data: ifData['ifInData']});
+        chartData.push({name: portName + '出', data: ifData['ifOutData']});
 
         var $portChart = $('.showArea');
         $portChart.hide();
-        generateChart($portChart, port_name, chartData);
+        generateChart($portChart, portName, chartData);
         $portChart.show('slide',500);
     }
 }
 
 // Create highstock.js chart
 function generateChart(chartObj, chartTitle, chartData) {
-    console.log('niuniu');
-    console.log(chartObj.length);
     chartObj.highcharts('StockChart', {
         title : { text : chartTitle },
         legend: { enabled: true },

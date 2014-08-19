@@ -5,7 +5,9 @@
     <title>Port Billing</title>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="css/jquery-ui/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/datatable/jquery.dataTables.css" type="text/css">
+    <!--<link rel="stylesheet" href="css/datatable/jquery.dataTables.css" type="text/css">-->
+    <link rel="stylesheet" href="css/tautocomplete/tautocomplete.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-notify-bar/jquery.notifyBar.css" type="text/css">
     <link rel="stylesheet" href="css/app/fastly.css" type="text/css">
     <link rel="stylesheet" href="css/app/custom.css" type="text/css">
 </head>
@@ -44,50 +46,26 @@
 <div class="toolbar">
 
     <div class="toolbar-control pull-left">
-        <label class="pull-left">设备</label>
-        <div class="service-search search-box pull-left">
-            <input class="search-box-input" style="width: 126px;" placeholder="输入设备名或 IP">
-            <button class="btn btn-search-box">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-            </button>
-
-            <div class="floatTable">
-                <table id="deviceTable" class="display compact" cellspacing="0" width="100%"></table>
-            </div>
-
-
+        <label class="pull-left">选择设备:</label>
+        <div class="search-box pull-left">
+            <input type="text" id="deviceInput" class="auto-input" />
         </div>
     </div>
 
     <div class="toolbar-control pull-left">
-        <label class="pull-left">端口</label>
+        <label class="pull-left">选择端口:</label>
         <div class="service-search search-box pull-left">
-            <input class="search-box-input" style="width: 126px;" placeholder="输入端口名称如: 2/0/0 ">
-            <button class="btn btn-search-box">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-            </button>
-
-            <div class="floatTable">
-                <table id="portTable" class="display compact" cellspacing="0" width="100%"></table>
-            </div>
+            <input type="text" id="portInput" class="auto-input"/>
         </div>
     </div>
 
     <div class="toolbar-control pull-left">
-        <span class="glyphicon glyphicon-calendar"></span>
-        <label class="pull-left">日期</label>
-        <span class="date-control" style="width: 126px;">本月</span>
-    </div>
 
-    <div class="toolbar-control pull-left" data-toggle="tooltip" title="Sampling Rate">
-        <label class="pull-left">
-            <span class="glyphicon glyphicon-globe"></span>
-        </label>
-        <select name="by" class="form-control pull-left" style="width: 126px;">
-            <option value="day" selected="">Day</option>s
-            <option value="hour">Hour</option>
-            <option value="minute">Minute</option>
-        </select>
+        <label class="pull-left">选择日期:</label>
+        <div class="service-search search-box pull-left">
+            <input type="text" id="dateInput" class="auto-input"/>
+        </div>
+        <span class="glyphicon glyphicon-calendar" style="margin-left: 15px;"></span>
     </div>
 
 </div>
@@ -166,10 +144,12 @@
 
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/jquery/jquery-ui.min.js"></script>
+<script src="js/jquery-notify-bar/jquery.notifyBar.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
 
-<script src="js/datatable/jquery.dataTables.min.js"></script>
-<script src="js/app/table.js"></script>
+<!--<script src="js/datatable/jquery.dataTables.min.js"></script>-->
+<script src="js/tautocomplete/tautocomplete.js"></script>
+<script src="js/app/autotable.js"></script>
 
 <script src="js/highchart/highstock.js"></script>
 <script src="js/highchart/highstocktheme.js"></script>

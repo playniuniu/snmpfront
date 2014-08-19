@@ -7,7 +7,7 @@ $(function() {
 //
 //    ajaxGetData(portDetailUrl, ajaxGenerateChart, ajaxFailedCallback);
 
-    getDeviceTable();
+    generateDeviceTable();
 });
 
 // Get Ajax data from post value
@@ -16,11 +16,12 @@ function ajaxGetData(url, callbackFunc, failedFunc) {
         type: 'GET',
         url: url,
         dataType: "json",
-        cache: false,
+//        cache: false,
         crossDomain: true,
         xhrFields: {
             withCredentials: false
         },
+        beforeSend: ajaxStartRequest,
         success: callbackFunc,
         error: failedFunc,
         timeout: 5000
@@ -29,5 +30,17 @@ function ajaxGetData(url, callbackFunc, failedFunc) {
 
 // Process ajax failed callback
 function ajaxFailedCallback(request) {
-    alert( "请求 Ajax: " + this.url + " 失败!");
+    $.notifyBar({
+        html: "请求数据: " + this.url + " 失败!",
+        cssClass: "error",
+        delay: 3000
+    });
+}
+
+function ajaxStartRequest(request) {
+    $.notifyBar({
+        html: "正在更新数据",
+        delay: 1000,
+        position: "bottom"
+    });
 }

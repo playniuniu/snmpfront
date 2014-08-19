@@ -1,10 +1,7 @@
+/* For jquery datatable */
+
 .dataTables_filter {
     display: none;
-}
-
-.showArea {
-    height: 450px;
-    width: 690px;
 }
 
 .floatTable {
@@ -14,4 +11,42 @@
     height: 400px;
     z-index: 1;
     display: none;
+}
+
+/* For jquery autocomplte table */
+
+.search-box {
+    top: 8px!important;
+}
+
+.acontainer input {
+    height: 28px;
+    line-height: 14px;
+    width: 196px;
+    float: left;
+}
+
+.adropdown table {
+    line-height: 25px;
+}
+
+.auto-input {
+    height: 28px;
+    line-height: 14px;
+    width: 196px;
+    float: left;
+    border-radius: 2px;
+    color: #000;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 10px solid #ccc;
+
+}
+
+/* For show chart and data */
+
+.showArea {
+    height: 350px;
+    width: 690px;
 }
