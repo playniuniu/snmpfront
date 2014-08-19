@@ -38,7 +38,7 @@ function createDeviceList($inputTextBox, deviceData) {
                 alert(e)
             }
             var filterData = [];
-            var searchData = eval("/" + inputTable.searchdata() + "/g");
+            var searchData = eval("/" + inputTable.searchdata() + "/gi");
             $.each(data, function(i,v)
             {
                 if (v.dev_name.search(new RegExp(searchData)) != -1) {
@@ -111,7 +111,7 @@ function createPortList($inputTextBox, portData) {
     for(var i = 0; i < portData.length; i++) {
         var item = {
             'id': portData[i]['ifDescr'],
-            'ifDescr': portData[i]['ifDescr']
+            'ifDescr': portData[i]['ifDescr'].replace(/\//g,'-')
         };
         tableData.push(item);
     }
@@ -119,8 +119,8 @@ function createPortList($inputTextBox, portData) {
     var inputTable = $inputTextBox.tautocomplete({
         width: "500px",
         columns: ['端口名称'],
-        placeholder: "输入端口名称，如2/0/0",
-        regex: "^[a-zA-Z0-9\/\b]+$",
+        placeholder: "输入端口名称，如2-0-0",
+        regex: "^[a-zA-Z0-9\/\-\b]+$",
         data: function () {
             try {
                 var data = tableData;
@@ -132,9 +132,11 @@ function createPortList($inputTextBox, portData) {
             var filterData = [];
 
             // Because port contain 2/0/0 str, need to replace with 2\/0\/0 to reg search
-            var replaceSearchData = inputTable.searchdata().replace(/\//g,'\\/');
+            // var replaceSearchData = inputTable.searchdata().replace(/\//g,'\\/');
 
-            var searchData = eval("/" + replaceSearchData + "/g");
+            var replaceSearchData = inputTable.searchdata().replace(/\//g,'-');
+            var searchData = eval("/" + replaceSearchData + "/gi");
+
             $.each(data, function(i,v)
             {
                 if (v.ifDescr.search(new RegExp(searchData)) != -1) {

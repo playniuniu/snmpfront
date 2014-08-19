@@ -25,12 +25,17 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav navbar-left menu-icons">
                 <li class="stats selected">
-                    <a href="#billing" class="glyphicon glyphicon-stats"></a>
-                    <a href="#billing" class="menu-label">计费</a>
+                    <a href="#billing" class="glyphicon glyphicon-signal"></a>
+                    <a href="#billing" class="menu-label">端口计费</a>
+                </li>
+
+                <li class="stats">
+                    <a href="#user" class="glyphicon glyphicon-user"></a>
+                    <a href="#user" class="menu-label">用户计费</a>
                 </li>
 
                 <li class="analytics">
-                    <a href="#setting" class="glyphicon glyphicon-list"></a>
+                    <a href="#setting" class="glyphicon glyphicon-cog"></a>
                     <a href="#setting" class="menu-label">设置</a>
                 </li>
             </ul>
@@ -43,55 +48,58 @@
         <div id="historical_stats" class="page">
 
 
-<div class="toolbar">
+            <div class="toolbar">
 
-    <div class="toolbar-control pull-left">
-        <label class="pull-left">选择设备:</label>
-        <div class="search-box pull-left">
-            <input type="text" id="deviceInput" class="auto-input" />
-        </div>
-    </div>
+                <div class="toolbar-control pull-left">
+                    <label class="pull-left">选择设备:</label>
+                    <div class="search-box pull-left">
+                        <input type="text" id="deviceInput" class="auto-input" />
+                    </div>
+                </div>
 
-    <div class="toolbar-control pull-left">
-        <label class="pull-left">选择端口:</label>
-        <div class="service-search search-box pull-left">
-            <input type="text" id="portInput" class="auto-input"/>
-        </div>
-    </div>
+                <div class="toolbar-control pull-left">
+                    <label class="pull-left">选择端口:</label>
+                    <div class="service-search search-box pull-left">
+                        <input type="text" id="portInput" class="auto-input"/>
+                    </div>
+                </div>
 
-    <div class="toolbar-control pull-left">
+                <div class="toolbar-control pull-left">
 
-        <label class="pull-left">选择日期:</label>
-        <div class="service-search search-box pull-left">
-            <input type="text" id="dateInput" class="auto-input"/>
-        </div>
-        <span class="glyphicon glyphicon-calendar" style="margin-left: 15px;"></span>
-    </div>
+                    <label class="pull-left">选择日期:</label>
+                    <div class="service-search search-box pull-left">
+                        <input type="text" id="dateInput" class="auto-input"/>
+                    </div>
+                    <span class="glyphicon glyphicon-calendar" style="margin-left: 15px;"></span>
+                </div>
 
-</div>
+            </div>
 
 
-<!--
-<div class="info">
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Displaying <strong class="count">0</strong> records from
-    <strong class="from">February 14, 2014</strong> to
-    <strong class="to">August 14, 2014</strong> sampled by
-    <strong class="by">day</strong>.
-</div>
--->
+            <div class="info" style="display: none;">
+                <span class="glyphicon glyphicon-calendar"></span>&nbsp;
+                20140801 ~ 20140831&nbsp;&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-stats"></span>&nbsp;
+                Ethernet2/0/0&nbsp;&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-usd"></span>15,000
+            </div>
+
 
             <div class="stats-rows">
                 <div class="hit-ratio">
                     <h3 class="stats-header">
-                        Hit Ratio
+                        端口计费
                         <div class="stats-controls">
                             <button class="help btn btn-default btn-md" data-original-title="" title="">
                                 <span class="glyphicon glyphicon-info-sign"></span>&nbsp;数据
                             </button>
 
                             <button class="image btn btn-default btn-md">
-                                <span class="glyphicon glyphicon-camera"></span>&nbsp;图形
+                                <span class="glyphicon glyphicon-picture"></span>&nbsp;图形
+                            </button>
+
+                            <button class="image btn btn-default btn-md">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;报表
                             </button>
                         </div>
                     </h3>
@@ -99,11 +107,11 @@
                     <div class="stats-row">
 
                         <div class="col-left">
-                            <div class="statistic" data-name="hit_ratio">
-                                <div class="statistic-check hit_ratio" data-state="on">
+                            <div class="statistic">
+                                <div class="statistic-check hit_ratio">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </div>
-                                Hit Ratio
+                                计费方式
 
                                 <span class="statistic-specifics">
                                     <span class="statistic-value">0%</span>
@@ -114,10 +122,18 @@
                                         </button>
 
                                         <ul class="dropdown-menu" role="menu">
-                                            <li role="presentation"><a role="menuitem" href="#" class="avg">Average</a></li>
-                                            <li role="presentation"><a role="menuitem" href="#" class="95th">95th Percentile</a></li>
-                                            <li role="presentation"><a role="menuitem" href="#" class="max">Maximum</a></li>
-                                            <li role="presentation"><a role="menuitem" href="#" class="min">Minimum</a></li>
+                                            <li role="presentation">
+                                                <a role="menuitem" href="#" class="avg">平均值</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" href="#" class="95th">95th</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" href="#" class="max">最大值</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" href="#" class="min">最小值</a>
+                                            </li>
                                         </ul>
                                     </span>
                                 </span>
@@ -134,8 +150,9 @@
 
         </div>
     </div>
-
 </div>
+
+
 
 <div id="footer">
     Copyright &copy; JYYL.Inc 2014 All Rights Reserved

@@ -16,6 +16,7 @@ function ajaxGenerateChart(response) {
 
     var $portContainer = $('#portInput').closest('.acontainer');
     var portName = $portContainer.children('input').last().val();
+    portName = portName.replace(/-/g,'/');
 
     if(ifData != undefined) {
         var chartData = [];

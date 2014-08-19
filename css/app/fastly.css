@@ -942,7 +942,10 @@ body.modal-open>#zenbox_tab {
     margin-bottom: 36px
 }
 
-#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h1,#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h2,#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h3,#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h4 {
+#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h1,
+#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h2,
+#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h3,
+#content>div.page.with-sidebar>div.main .nav-section .nav-section-header h4 {
     margin-top: 0
 }
 
@@ -1069,7 +1072,8 @@ body.modal-open>#zenbox_tab {
     margin-top: 36px
 }
 
-#login form.login,#login form.request_reset,#login form.signup,#login form.reset_password,#login form.accept_invitation {
+#login form.login,#login form.request_reset,#login form.signup,
+#login form.reset_password,#login form.accept_invitation {
     width: 336px;
     margin: 0 auto
 }
@@ -1362,7 +1366,8 @@ legend.reset {
     border-bottom: 1px dotted #888
 }
 
-#billing .summary .section label,#billing .summary .section .count,#billing .summary .section .price,#billing .summary .section .discount {
+#billing .summary .section label,#billing .summary .section .count,
+#billing .summary .section .price,#billing .summary .section .discount {
     float: left
 }
 
@@ -2201,17 +2206,24 @@ body.dark #heatmap .bar.miss_latency {
     width: 595px
 }
 
-#configure_overview .header>.controls>.btn,#configure_overview .header>.controls .btn-group,#configure_editor .header>.controls>.btn,#configure_editor .header>.controls .btn-group {
+#configure_overview .header>.controls>.btn,
+#configure_overview .header>.controls .btn-group,
+#configure_editor .header>.controls>.btn,
+#configure_editor .header>.controls .btn-group {
     float: left;
     margin-left: 9px;
     margin-top: 29px
 }
 
-#configure_overview .header>.controls>.btn .config-tooltip,#configure_overview .header>.controls .btn-group .config-tooltip,#configure_editor .header>.controls>.btn .config-tooltip,#configure_editor .header>.controls .btn-group .config-tooltip {
+#configure_overview .header>.controls>.btn .config-tooltip,
+#configure_overview .header>.controls .btn-group .config-tooltip,
+#configure_editor .header>.controls>.btn .config-tooltip,
+#configure_editor .header>.controls .btn-group .config-tooltip {
     margin-top: 0
 }
 
-#configure_overview .header>.controls .config-tooltip,#configure_editor .header>.controls .config-tooltip {
+#configure_overview .header>.controls .config-tooltip,
+#configure_editor .header>.controls .config-tooltip {
     margin-top: 29px;
     display: inline-block;
     float: left;
@@ -2548,7 +2560,8 @@ body.dark #heatmap .bar.miss_latency {
     background-position: -451px 11px
 }
 
-#configure_editor .toolbar .version-status.warning:hover,#configure_editor .toolbar .version-status.error:hover {
+#configure_editor .toolbar .version-status.warning:hover,
+#configure_editor .toolbar .version-status.error:hover {
     opacity: 0.8
 }
 
@@ -2655,7 +2668,8 @@ body.dark #heatmap .bar.miss_latency {
     cursor: default;
     display: inline-block;
     float: left;
-    font-family: 'Lucida Grande', Geneva, 'Lucida Sans', 'Lucida Sans Unicode', Lucida, Verdana, Helvetica, Arial, sans-serif;
+    font-family: 'Lucida Grande', Geneva, 'Lucida Sans',
+    'Lucida Sans Unicode', Lucida, Verdana, Helvetica, Arial, sans-serif;
     font-size: 15px;
     font-style: normal;
     font-variant: normal;
@@ -3141,7 +3155,9 @@ a.try-fastly:hover {
     display: none
 }
 
-#configure_editor .condition-modal .submit-assign,#configure_editor .condition-modal .submit-update,#configure_editor .condition-modal .submit-create {
+#configure_editor .condition-modal .submit-assign,
+#configure_editor .condition-modal .submit-update,
+#configure_editor .condition-modal .submit-create {
     display: none
 }
 
@@ -3161,15 +3177,22 @@ a.try-fastly:hover {
     display: inline
 }
 
-#configure_editor .condition-modal[data-state=new] .modal-controls .edit,#configure_editor .condition-modal[data-state=new] .modal-controls .new,#configure_editor .condition-modal[data-state=new] .modal-controls .copy,#configure_editor .condition-modal[data-state=edit] .modal-controls .edit,#configure_editor .condition-modal[data-state=edit] .modal-controls .new,#configure_editor .condition-modal[data-state=edit] .modal-controls .copy {
+#configure_editor .condition-modal[data-state=new] .modal-controls .edit,
+#configure_editor .condition-modal[data-state=new] .modal-controls .new,
+#configure_editor .condition-modal[data-state=new] .modal-controls .copy,
+#configure_editor .condition-modal[data-state=edit] .modal-controls .edit,
+#configure_editor .condition-modal[data-state=edit] .modal-controls .new,
+#configure_editor .condition-modal[data-state=edit] .modal-controls .copy {
     display: none
 }
 
-#configure_editor .condition-modal[data-state=new] .modal-controls .choose,#configure_editor .condition-modal[data-state=edit] .modal-controls .choose {
+#configure_editor .condition-modal[data-state=new] .modal-controls .choose,
+#configure_editor .condition-modal[data-state=edit] .modal-controls .choose {
     display: inline
 }
 
-#configure_editor .condition-modal[data-state=new] .edit-condition,#configure_editor .condition-modal[data-state=edit] .edit-condition {
+#configure_editor .condition-modal[data-state=new] .edit-condition,
+#configure_editor .condition-modal[data-state=edit] .edit-condition {
     display: block
 }
 
@@ -3189,7 +3212,9 @@ a.try-fastly:hover {
     display: inline
 }
 
-#configure_editor .condition-modal[data-state=choose] .modal-controls .edit,#configure_editor .condition-modal[data-state=choose] .modal-controls .new,#configure_editor .condition-modal[data-state=choose] .modal-controls .copy {
+#configure_editor .condition-modal[data-state=choose] .modal-controls .edit,
+#configure_editor .condition-modal[data-state=choose] .modal-controls .new,
+#configure_editor .condition-modal[data-state=choose] .modal-controls .copy {
     display: inline
 }
 
@@ -3222,11 +3247,13 @@ a.try-fastly:hover {
     content: "Choose "
 }
 
-#configure_editor #headers [data-header-type=request] li.cache-condition,#configure_editor #headers [data-header-type=fetch] li.cache-condition {
+#configure_editor #headers [data-header-type=request] li.cache-condition,
+#configure_editor #headers [data-header-type=fetch] li.cache-condition {
     display: none
 }
 
-#configure_editor #headers [data-header-type=request] li.response-condition,#configure_editor #headers [data-header-type=fetch] li.response-condition {
+#configure_editor #headers [data-header-type=request] li.response-condition,
+#configure_editor #headers [data-header-type=fetch] li.response-condition {
     display: none
 }
 
@@ -3246,11 +3273,15 @@ a.try-fastly:hover {
     display: none
 }
 
-#configure_editor #headers [data-header-action=set] .regex-field,#configure_editor #headers [data-header-action=append] .regex-field,#configure_editor #headers [data-header-action=delete] .regex-field {
+#configure_editor #headers [data-header-action=set] .regex-field,
+#configure_editor #headers [data-header-action=append] .regex-field,
+#configure_editor #headers [data-header-action=delete] .regex-field {
     display: none
 }
 
-#configure_editor #headers [data-header-action=set] .substitution-field,#configure_editor #headers [data-header-action=append] .substitution-field,#configure_editor #headers [data-header-action=delete] .substitution-field {
+#configure_editor #headers [data-header-action=set] .substitution-field,
+#configure_editor #headers [data-header-action=append] .substitution-field,
+#configure_editor #headers [data-header-action=delete] .substitution-field {
     display: none
 }
 
@@ -3267,11 +3298,15 @@ a.try-fastly:hover {
     margin-right: 0
 }
 
-#configure_editor #headers .resource-modal .regex-group,#configure_editor #headers .resource-modal .substitution-group {
+#configure_editor #headers .resource-modal .regex-group,
+#configure_editor #headers .resource-modal .substitution-group {
     display: none
 }
 
-#configure_editor #headers .resource-modal[data-header-action=regex] .regex-group,#configure_editor #headers .resource-modal[data-header-action=regex] .substitution-group,#configure_editor #headers .resource-modal[data-header-action=regex_repeat] .regex-group,#configure_editor #headers .resource-modal[data-header-action=regex_repeat] .substitution-group {
+#configure_editor #headers .resource-modal[data-header-action=regex] .regex-group,
+#configure_editor #headers .resource-modal[data-header-action=regex] .substitution-group,
+#configure_editor #headers .resource-modal[data-header-action=regex_repeat] .regex-group,
+#configure_editor #headers .resource-modal[data-header-action=regex_repeat] .substitution-group {
     display: block
 }
 
@@ -3296,7 +3331,10 @@ a.try-fastly:hover {
     display: none
 }
 
-#configure_editor #healthchecks .advanced fieldset .form-group input[name=threshold],#configure_editor #healthchecks .advanced fieldset .form-group input[name=window],#configure_editor #healthchecks .advanced fieldset .form-group input[name=check_interval],#configure_editor #healthchecks .advanced fieldset .form-group input[name=timeout] {
+#configure_editor #healthchecks .advanced fieldset .form-group input[name=threshold],
+#configure_editor #healthchecks .advanced fieldset .form-group input[name=window],
+#configure_editor #healthchecks .advanced fieldset .form-group input[name=check_interval],
+#configure_editor #healthchecks .advanced fieldset .form-group input[name=timeout] {
     display: inline-block
 }
 
@@ -3618,11 +3656,15 @@ a.try-fastly:hover {
     top: 100%
 }
 
-#historical_stats .hit-ratio .col-right .epoch,#historical_stats .cache-coverage .col-right .epoch,#historical_stats .error-ratio .col-right .epoch {
+#historical_stats .hit-ratio .col-right .epoch,
+#historical_stats .cache-coverage .col-right .epoch,
+#historical_stats .error-ratio .col-right .epoch {
     height: 110px
 }
 
-#historical_stats .hit-ratio .col-right .variance-chart,#historical_stats .cache-coverage .col-right .variance-chart,#historical_stats .error-ratio .col-right .variance-chart {
+#historical_stats .hit-ratio .col-right .variance-chart,
+#historical_stats .cache-coverage .col-right .variance-chart,
+#historical_stats .error-ratio .col-right .variance-chart {
     display: none
 }
 
@@ -3691,7 +3733,8 @@ a.try-fastly:hover {
     stroke: #acaeee
 }
 
-#historical_stats .epoch .layer.bandwidth .area,#historical_stats .epoch .layer.bandwidth .dot {
+#historical_stats .epoch .layer.bandwidth .area,
+#historical_stats .epoch .layer.bandwidth .dot {
     fill: #acaeee
 }
 
@@ -3715,7 +3758,8 @@ a.try-fastly:hover {
     stroke: #6264b3
 }
 
-#historical_stats .epoch .layer.body_size .area,#historical_stats .epoch .layer.body_size .dot {
+#historical_stats .epoch .layer.body_size .area,
+#historical_stats .epoch .layer.body_size .dot {
     fill: #6264b3
 }
 
@@ -3763,7 +3807,8 @@ a.try-fastly:hover {
     stroke: #e6717b
 }
 
-#historical_stats .epoch .layer.other_5xx .area,#historical_stats .epoch .layer.other_5xx .dot {
+#historical_stats .epoch .layer.other_5xx .area,
+#historical_stats .epoch .layer.other_5xx .dot {
     fill: #e6717b
 }
 
@@ -3787,7 +3832,8 @@ a.try-fastly:hover {
     stroke: #e6717b
 }
 
-#historical_stats .epoch .layer.error_ratio .area,#historical_stats .epoch .layer.error_ratio .dot {
+#historical_stats .epoch .layer.error_ratio .area,
+#historical_stats .epoch .layer.error_ratio .dot {
     fill: #e6717b
 }
 
@@ -3811,7 +3857,8 @@ a.try-fastly:hover {
     stroke: #b24444
 }
 
-#historical_stats .epoch .layer.status_503 .area,#historical_stats .epoch .layer.status_503 .dot {
+#historical_stats .epoch .layer.status_503 .area,
+#historical_stats .epoch .layer.status_503 .dot {
     fill: #b24444
 }
 
@@ -3835,7 +3882,8 @@ a.try-fastly:hover {
     stroke: #acaeee
 }
 
-#historical_stats .epoch .layer.header_size .area,#historical_stats .epoch .layer.header_size .dot {
+#historical_stats .epoch .layer.header_size .area,
+#historical_stats .epoch .layer.header_size .dot {
     fill: #acaeee
 }
 
@@ -3859,7 +3907,8 @@ a.try-fastly:hover {
     stroke: #eeaee6
 }
 
-#historical_stats .epoch .layer.hit_ratio .area,#historical_stats .epoch .layer.hit_ratio .dot {
+#historical_stats .epoch .layer.hit_ratio .area,
+#historical_stats .epoch .layer.hit_ratio .dot {
     fill: #eeaee6
 }
 
@@ -4544,5 +4593,9 @@ a.try-fastly:hover {
 }
 
 .security #codes {
-    font-family: Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace
+    font-family: Menlo, 'DejaVu LGC Sans Mono',
+    'DejaVu Sans Mono', Consolas, 'Everson Mono',
+    'Lucida Console', 'Andale Mono', 'Nimbus Mono L',
+    'Liberation Mono', FreeMono, 'Osaka Monospaced',
+    Courier, 'New Courier', monospace
 }
