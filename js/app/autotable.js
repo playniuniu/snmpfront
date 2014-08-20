@@ -58,12 +58,15 @@ function createDeviceList($inputTextBox, deviceData) {
             return filterData;
         },
         onchange: function() {
-            generatePortList(inputTable.id());
+            $inputTextBox.data('dev_name', inputTable.id());
+            generatePortList();
         }
     });
 }
 
-function generatePortList(dev_name) {
+function generatePortList() {
+    var $deviceInput = $('#deviceInput');
+    var dev_name = $deviceInput.data('dev_name');
     if(dev_name != undefined && dev_name != "") {
         var portUrl = 'http://idcapi.uunus.com/ports/' + dev_name;
         ajaxGetData(portUrl, ajaxCreatePortList, ajaxFailedCallback);
@@ -94,10 +97,9 @@ function ajaxCreatePortList(response) {
 // Recreate portInput DOM
 function recreatePortDOM() {
     var $portInput = $('#portInput');
-    var $portInputClone = $portInput.clone();
     var $portContainer = $portInput.closest('.search-box');
     $portContainer.empty();
-    $portInputClone.val("");
+    var $portInputClone = $('<input type="text" id="portInput" class="auto-input"/>');
     $portContainer.append($portInputClone);
     return $portInputClone;
 }
@@ -120,7 +122,7 @@ function createPortList($inputTextBox, portData) {
         width: "500px",
         columns: ['端口名称'],
         placeholder: "输入端口名称，如2-0-0",
-        regex: "^[a-zA-Z0-9\/\-\b]+$",
+        regex: "^[a-zA-Z0-9\-\b]+$",
         data: function () {
             try {
                 var data = tableData;
@@ -134,8 +136,7 @@ function createPortList($inputTextBox, portData) {
             // Because port contain 2/0/0 str, need to replace with 2\/0\/0 to reg search
             // var replaceSearchData = inputTable.searchdata().replace(/\//g,'\\/');
 
-            var replaceSearchData = inputTable.searchdata().replace(/\//g,'-');
-            var searchData = eval("/" + replaceSearchData + "/gi");
+            var searchData = eval("/" + inputTable.searchdata() + "/gi");
 
             $.each(data, function(i,v)
             {
@@ -146,12 +147,15 @@ function createPortList($inputTextBox, portData) {
             return filterData;
         },
         onchange: function() {
-            generateDataList(inputTable.id());
+            $inputTextBox.data('port_name', inputTable.id());
+            generateDataList();
         }
     });
 }
 
-function generateDataList(port_name) {
+function generateDataList() {
+    var $portInput = $('#portInput');
+    var port_name = $portInput.data('port_name');
     var $dateInput = $('#dateInput');
 
     if(port_name == undefined || port_name == "") {
@@ -164,9 +168,10 @@ function generateDataList(port_name) {
         });
         return;
     }
-    $dateInput.val('八月');
 
-    var $deviceContainer = $('#deviceInput').closest('.acontainer');
-    var dev_name = $deviceContainer.children('input').last().val();
+    $dateInput.val('201408');
+
+    var $deviceInput = $('#deviceInput');
+    var dev_name = $deviceInput.data('dev_name');
     createPortChart(dev_name, port_name, '201408');
 }

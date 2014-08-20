@@ -1,12 +1,4 @@
 $(function() {
-//    var portDetailUrl = 'http://idcapi.uunus.com/billing?where={'
-//        + '"dev_name":"' + 's9312-254' + '",'
-//        + '"port_name":"' + 'Ethernet2/0/0' + '",'
-//        + '"month":"' + '201408' + '",'
-//        + '"datetype":"' + 'month' + '"}';
-//
-//    ajaxGetData(portDetailUrl, ajaxGenerateChart, ajaxFailedCallback);
-
     generateDeviceTable();
 });
 
