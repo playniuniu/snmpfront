@@ -1,3 +1,4 @@
+// generate device table
 function generateDeviceTable() {
     var deviceUrl = 'http://idcapi.uunus.com/devices/';
     ajaxGetData(deviceUrl, ajaxCreateDevicesList, ajaxFailedCallback);
@@ -10,6 +11,8 @@ function ajaxCreateDevicesList(response) {
     createDeviceList($deviceInput, deviceData);
 }
 
+
+// create device list with tAutocomplete table
 function createDeviceList($inputTextBox, deviceData) {
 
     var tableData = [];
@@ -64,6 +67,7 @@ function createDeviceList($inputTextBox, deviceData) {
     });
 }
 
+// generate port input table
 function generatePortList() {
     var $deviceInput = $('#deviceInput');
     var dev_name = $deviceInput.data('dev_name');
@@ -93,7 +97,6 @@ function ajaxCreatePortList(response) {
     createPortList($portInput, portData);
 }
 
-
 // Recreate portInput DOM
 function recreatePortDOM() {
     var $portInput = $('#portInput');
@@ -103,7 +106,6 @@ function recreatePortDOM() {
     $portContainer.append($portInputClone);
     return $portInputClone;
 }
-
 
 // Create port list
 function createPortList($inputTextBox, portData) {
@@ -148,12 +150,13 @@ function createPortList($inputTextBox, portData) {
         },
         onchange: function() {
             $inputTextBox.data('port_name', inputTable.id());
-            generateDataList();
+            generateDateList();
         }
     });
 }
 
-function generateDataList() {
+// genearte date input table
+function generateDateList() {
     var $portInput = $('#portInput');
     var port_name = $portInput.data('port_name');
     var $dateInput = $('#dateInput');
@@ -169,9 +172,38 @@ function generateDataList() {
         return;
     }
 
+    var month = '201408';
     $dateInput.val('201408');
 
     var $deviceInput = $('#deviceInput');
     var dev_name = $deviceInput.data('dev_name');
-    createPortChart(dev_name, port_name, '201408');
+
+    var portChartUrl = 'http://idcapi.uunus.com/billing?where={'
+        + '"dev_name":"' + dev_name + '",'
+        + '"port_name":"' + port_name + '",'
+        + '"month":"' + month + '",'
+        + '"datetype":"' + 'all' + '"}';
+
+    ajaxGetData(portChartUrl, ajaxGeneratePortArea, ajaxFailedCallback);
+}
+
+function ajaxGeneratePortArea(response) {
+
+    if(response['error'] == 'true') {
+        $.notifyBar({
+            cssClass: "error",
+            html: "换取端口数据错误",
+            delay: 2000
+        });
+        return;
+    }
+
+    var $showArea = $('.showArea');
+    var month_data = response['data']['month'];
+    var allday_data = response['data']['allday'];
+    $showArea.data('month_data', month_data);
+    $showArea.data('allday_data', allday_data);
+    $showArea.data('status','on');
+    generateAreaChart($showArea);
+
 }

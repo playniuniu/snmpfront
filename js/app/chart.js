@@ -1,32 +1,27 @@
-// create ajax port request
-function createPortChart(dev_name, port_name, month) {
+// Generate area chart
+function generateAreaChart($showArea) {
+    var month_data = $showArea.data('month_data');
+    if(month_data == undefined || month_data == "") {
+        $.notifyBar({
+            cssClass: "error",
+            html: "图形数据生成错误",
+            delay: 2000
+        });
+        return;
+    }
 
-    var portChartUrl = 'http://idcapi.uunus.com/billing?where={'
-        + '"dev_name":"' + dev_name + '",'
-        + '"port_name":"' + port_name + '",'
-        + '"month":"' + month + '",'
-        + '"datetype":"' + 'month' + '"}';
-
-    ajaxGetData(portChartUrl, ajaxGenerateChart, ajaxFailedCallback);
-}
-
-// Generate chart from ajax data
-function ajaxGenerateChart(response) {
-    var ifData = parseMonthData(response);
-
-    var $portContainer = $('#portInput').closest('.acontainer');
-    var portName = $portContainer.children('input').last().val();
-    portName = portName.replace(/-/g,'/');
+    var ifData = parseMonthData(month_data);
+    var portName = $('#portInput').data('port_name');
+    var devName = $('#deviceInput').data('dev_name');
 
     if(ifData != undefined) {
         var chartData = [];
         chartData.push({name: portName + '入', data: ifData['ifInData']});
         chartData.push({name: portName + '出', data: ifData['ifOutData']});
 
-        var $portChart = $('.showArea');
-        $portChart.hide();
-        generateChart($portChart, portName, chartData);
-        $portChart.show('slide',500);
+        $showArea.empty();
+        generateChart($showArea, devName + ' - ' + portName, chartData);
+        $showArea.show('slide',500);
     }
 }
 
@@ -42,14 +37,9 @@ function generateChart(chartObj, chartTitle, chartData) {
 // parse month data from ajax request
 function parseMonthData(raw_data) {
 
-    if (raw_data['error'] == 'true') {
-        alert("请求图形数据错误!");
-        return undefined;
-    }
-
-    var ifHCInOctets = raw_data['data']['ifIn_data'];
-    var ifHCOutOctets = raw_data['data']['ifOut_data'];
-    var timeStamp = raw_data['data']['timeStamp'];
+    var ifHCInOctets = raw_data['ifIn_data'];
+    var ifHCOutOctets = raw_data['ifOut_data'];
+    var timeStamp = raw_data['timeStamp'];
 
     if(timeStamp.length != ifHCInOctets.length || timeStamp.length != ifHCOutOctets.length ) {
         alert("请求图形数据长度错误!");
