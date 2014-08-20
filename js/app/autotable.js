@@ -178,7 +178,7 @@ function generateDateList() {
     var $deviceInput = $('#deviceInput');
     var dev_name = $deviceInput.data('dev_name');
 
-    var portChartUrl = 'http://idcapi.uunus.com/billing?where={'
+    var portChartUrl = 'http://idcapi.uunus.com/billing/?where={'
         + '"dev_name":"' + dev_name + '",'
         + '"port_name":"' + port_name + '",'
         + '"month":"' + month + '",'
