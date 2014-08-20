@@ -36,3 +36,29 @@ function ajaxStartRequest(request) {
         position: "bottom"
     });
 }
+
+function transSpeed(value) {
+
+    var speed_str = '';
+    if (value < 1000) {
+        speed_str += value.toFixed(0);
+        speed_str += ' bps';
+        return speed_str;
+    }
+
+    if (value < Math.pow(1000,2)) {
+        speed_str += (value / 1000).toFixed(1);
+        speed_str += ' kb';
+        return speed_str;
+    }
+
+    if (value < Math.pow(1000,3)) {
+        speed_str += (value / Math.pow(1000,2)).toFixed(1);
+        speed_str += ' Mb';
+        return speed_str;
+    }
+
+    speed_str += (value / Math.pow(1000,3)).toFixed(1);
+    speed_str += ' Gb';
+    return speed_str;
+}

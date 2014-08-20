@@ -182,7 +182,8 @@ function generateDateList() {
         + '"dev_name":"' + dev_name + '",'
         + '"port_name":"' + port_name + '",'
         + '"month":"' + month + '",'
-        + '"datetype":"' + 'all' + '"}';
+        + '"datetype":"' + 'all' + '",'
+        + '"billing_method":"' + '95th' + '"}';
 
     ajaxGetData(portChartUrl, ajaxGeneratePortArea, ajaxFailedCallback);
 }
@@ -204,6 +205,24 @@ function ajaxGeneratePortArea(response) {
     $showArea.data('month_data', month_data);
     $showArea.data('allday_data', allday_data);
     $showArea.data('status','on');
+    registerUiEvent($showArea);
     generateAreaChart($showArea);
 
+}
+
+function registerUiEvent($showArea) {
+    var $chartButtonGroup = $showArea.closest('.port-billing-area').find('.area-button');
+
+    $chartButtonGroup.on('click', '.chart-button', function() {
+        generateAreaChart($showArea);
+        $(this).blur();
+    });
+
+    $chartButtonGroup.on('click', '.data-button', function() {
+        generateAreaTable($showArea);
+    });
+
+    $chartButtonGroup.on('click', '.export-button', function() {
+        generateAreaExport($showArea);
+    });
 }
