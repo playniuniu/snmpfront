@@ -214,6 +214,11 @@ function ajaxGeneratePortArea(response) {
 function registerUiEvent($showArea) {
     var $chartButtonGroup = $showArea.closest('.port-billing-area').find('.area-button');
 
+    // unbind event first
+    $chartButtonGroup.off('click', '.chart-button');
+    $chartButtonGroup.off('click', '.data-button');
+    $chartButtonGroup.off('click', '.export-button');
+
     $chartButtonGroup.on('click', '.chart-button', function() {
         generateAreaChart($showArea);
         $(this).blur();
@@ -224,23 +229,32 @@ function registerUiEvent($showArea) {
     });
 
     $chartButtonGroup.on('click', '.export-button', function() {
-        var $deviceInput = $('#deviceInput');
-        var dev_name = $deviceInput.data('dev_name');
-
-        var $portInput = $('#portInput');
-        var port_name = $portInput.data('port_name');
-
-        var $dateInput = $('#dateInput');
-        var month = $dateInput.data('month');
-
-        var portItem = {
-            'dev_name' : $deviceInput.data('dev_name'),
-            'port_name' : $portInput.data('port_name'),
-            'month': $dateInput.data('month'),
-            'billing_method': '95th'
-        };
-
-        var postData = {'port_list[]': [portItem]};
-        ajaxPostData("http://idcapi.uunus.com/report/", postData, ajaxCsvFile, ajaxFailedCallback);
+        console.log('niuniu');
+        generateAreaReport($showArea);
     });
+}
+
+function generateAreaReport($showArea) {
+    var $deviceInput = $('#deviceInput');
+    var dev_name = $deviceInput.data('dev_name');
+
+    var $portInput = $('#portInput');
+    var port_name = $portInput.data('port_name');
+
+    var $dateInput = $('#dateInput');
+    var month = $dateInput.data('month');
+
+    var portItem = {
+        'dev_name' : $deviceInput.data('dev_name'),
+        'port_name' : $portInput.data('port_name'),
+        'month': $dateInput.data('month'),
+        'billing_method': '95th'
+    };
+
+    // 可以绑定多个端口一起发报表
+    // var postData = {'port_list[]': [portItem1,portItem2]};
+
+    var postData = {'port_list[]': [portItem]};
+    var data = JSON.stringify(postData);
+    ajaxPostData("http://idcapi.uunus.com/report/", data, ajaxCsvFile, ajaxFailedCallback);
 }
