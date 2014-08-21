@@ -1,64 +1,1 @@
-$(function() {
-    generateDeviceTable();
-});
-
-// Get Ajax data from post value
-function ajaxGetData(url, callbackFunc, failedFunc) {
-    $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: "json",
-//        cache: false,
-        crossDomain: true,
-        xhrFields: {
-            withCredentials: false
-        },
-        beforeSend: ajaxStartRequest,
-        success: callbackFunc,
-        error: failedFunc,
-        timeout: 5000
-    });
-}
-
-// Process ajax failed callback
-function ajaxFailedCallback(request) {
-    $.notifyBar({
-        html: "请求数据: " + this.url + " 失败!",
-        cssClass: "error",
-        delay: 3000
-    });
-}
-
-function ajaxStartRequest(request) {
-    $.notifyBar({
-        html: "正在更新数据",
-        delay: 1000,
-        position: "bottom"
-    });
-}
-
-function transSpeed(value) {
-
-    var speed_str = '';
-    if (value < 1000) {
-        speed_str += value.toFixed(0);
-        speed_str += ' bps';
-        return speed_str;
-    }
-
-    if (value < Math.pow(1000,2)) {
-        speed_str += (value / 1000).toFixed(1);
-        speed_str += ' kb';
-        return speed_str;
-    }
-
-    if (value < Math.pow(1000,3)) {
-        speed_str += (value / Math.pow(1000,2)).toFixed(1);
-        speed_str += ' Mb';
-        return speed_str;
-    }
-
-    speed_str += (value / Math.pow(1000,3)).toFixed(1);
-    speed_str += ' Gb';
-    return speed_str;
-}
+$(function() {    generateDeviceTable();});// Get Ajax data from post valuefunction ajaxGetData(url, callbackFunc, failedFunc) {    var request = $.ajax({        type: 'GET',        url: url,        dataType: "json",//        cache: false,        crossDomain: true,        xhrFields: {            withCredentials: false        },        beforeSend: ajaxStartRequest,        timeout: 5000    });    request.done(function(response, status, request){        callbackFunc(response);    });    request.fail(function( jqXHR, textStatus ) {        failedFunc(jqXHR, textStatus);    });}function ajaxPostData(url, data, callbackFunc, failedFunc) {    var request = $.ajax({        type: 'POST',        url: url,        data: data,        crossDomain: true,//        cache: false,//        contentType: false,//        processData: false,//        async: false,        xhrFields: {            withCredentials: false        },        beforeSend: ajaxStartRequest,        timeout: 5000    });    request.done(function(response, status, request){        callbackFunc(response, status, request);    });    request.fail(function( jqXHR, textStatus ) {        failedFunc(jqXHR, textStatus);    });}// Process ajax failed callbackfunction ajaxFailedCallback(jqXHR, textStatus) {    $.notifyBar({        html: "请求数据: " + this.url + " 失败!" + "\n" + textStatus,        cssClass: "error",        delay: 3000    });}function ajaxStartRequest(request) {    $.notifyBar({        html: "正在更新数据",        delay: 1000,        position: "bottom"    });}function ajaxCsvFile(response, status, request) {    // 获取HTTP RESPONSE 头信息    // 需要 nginx 配置 add_header 'Access-Control-Expose-Headers' 'Content-Disposition';    var disp = request.getResponseHeader('Content-Disposition');    // 查看 Content-Disposition 是否包含 attachment 信息    if (disp && disp.search('attachment') != -1) {        // 根据返回的 csv 字符串，生成数组        // 直接使用 csv字符串，会导致 csv 文件编程一行        csv_arrays = $.csv.toArrays(response);        // 对数组加上换行符        var csv_string = csv_arrays.join("%0A");        // 生成一个隐藏的 $file tag        var $file = document.createElement('a');        $file.href = 'data:application/csv;charset=utf-8,' + csv_string;        $file.target = '_blank';        $file.download = 'report.csv';        document.body.appendChild($file);        $file.click();        $file.remove();    }    else {        $.notifyBar({            cssClass: "error",            html: "获取报表错误",            delay: 2000        });    }}function transSpeed(value) {    var speed_str = '';    if (value < 1000) {        speed_str += value.toFixed(0);        speed_str += ' bps';        return speed_str;    }    if (value < Math.pow(1000,2)) {        speed_str += (value / 1000).toFixed(1);        speed_str += ' kb';        return speed_str;    }    if (value < Math.pow(1000,3)) {        speed_str += (value / Math.pow(1000,2)).toFixed(1);        speed_str += ' Mb';        return speed_str;    }    speed_str += (value / Math.pow(1000,3)).toFixed(1);    speed_str += ' Gb';    return speed_str;}

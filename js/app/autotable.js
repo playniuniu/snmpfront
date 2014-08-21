@@ -174,6 +174,7 @@ function generateDateList() {
 
     var month = '201408';
     $dateInput.val('201408');
+    $dateInput.data('month', '201408');
 
     var $deviceInput = $('#deviceInput');
     var dev_name = $deviceInput.data('dev_name');
@@ -223,6 +224,23 @@ function registerUiEvent($showArea) {
     });
 
     $chartButtonGroup.on('click', '.export-button', function() {
-        generateAreaExport($showArea);
+        var $deviceInput = $('#deviceInput');
+        var dev_name = $deviceInput.data('dev_name');
+
+        var $portInput = $('#portInput');
+        var port_name = $portInput.data('port_name');
+
+        var $dateInput = $('#dateInput');
+        var month = $dateInput.data('month');
+
+        var portItem = {
+            'dev_name' : $deviceInput.data('dev_name'),
+            'port_name' : $portInput.data('port_name'),
+            'month': $dateInput.data('month'),
+            'billing_method': '95th'
+        };
+
+        var postData = {'port_list[]': [portItem]};
+        ajaxPostData("http://idcapi.uunus.com/report/", postData, ajaxCsvFile, ajaxFailedCallback);
     });
 }
