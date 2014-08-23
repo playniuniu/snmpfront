@@ -56,3 +56,22 @@
 .port-billing-area button {
     display: none;
 }
+
+.stats-header {
+    display: block;
+    font-family: 'Helvetica Neue', helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #555;
+}
+
+.stats-header h3 {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.stats-header .stats-controls {
+    display: inline-block;
+    float: right;
+    margin-right: 30px
+}
