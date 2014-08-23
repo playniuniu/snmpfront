@@ -9,6 +9,9 @@ function ajaxCreateDevicesList(response) {
     var deviceData = response['data'];
     var $deviceInput = $('#deviceInput');
     createDeviceList($deviceInput, deviceData);
+
+    var $realInput = $deviceInput.closest('.acontainer').children('input').last();
+    $realInput.trigger( "focus" );
 }
 
 
@@ -95,6 +98,9 @@ function ajaxCreatePortList(response) {
     var $portInput = recreatePortDOM();
 
     createPortList($portInput, portData);
+
+    var $realInput = $portInput.closest('.acontainer').children('input').last();
+    $realInput.trigger( "focus" );
 }
 
 // Recreate portInput DOM
@@ -213,6 +219,7 @@ function ajaxGeneratePortArea(response) {
 
 function registerUiEvent($showArea) {
     var $chartButtonGroup = $showArea.closest('.port-billing-area').find('.area-button');
+    $chartButtonGroup.children('button').show();
 
     // unbind event first
     $chartButtonGroup.off('click', '.chart-button');
@@ -229,7 +236,6 @@ function registerUiEvent($showArea) {
     });
 
     $chartButtonGroup.on('click', '.export-button', function() {
-        console.log('niuniu');
         generateAreaReport($showArea);
     });
 }
