@@ -28,7 +28,7 @@ function generateAreaChart($showArea) {
 // Create highstock.js chart
 function generateChart(chartObj, chartTitle, chartData) {
     chartObj.highcharts('StockChart', {
-        title : { text : chartTitle },
+        // title : { text : chartTitle },
         legend: { enabled: true },
         series: chartData
     });
