@@ -52,3 +52,7 @@
     /*width: 690px;*/
     width: 910px;
 }
+
+.port-billing-area button {
+    display: none;
+}

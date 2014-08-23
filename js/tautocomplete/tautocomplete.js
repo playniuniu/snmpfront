@@ -80,7 +80,6 @@
         // check if the textbox is focused.
         if (this.is(':focus')) {
             focused = true;
-            console.log('niuniu');
         }
 
         // get number of columns
@@ -176,7 +175,7 @@
                 el.ddTextbox.addClass("loading");
 
                 getFinalData();
-            }, 200);
+            }, 50);
         });
 
         // call on Ajax success
