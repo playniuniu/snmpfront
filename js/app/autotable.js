@@ -14,7 +14,6 @@ function ajaxCreateDevicesList(response) {
     $realInput.trigger( "focus" );
 }
 
-
 // create device list with tAutocomplete table
 function createDeviceList($inputTextBox, deviceData) {
 
@@ -156,13 +155,14 @@ function createPortList($inputTextBox, portData) {
         },
         onchange: function() {
             $inputTextBox.data('port_name', inputTable.id());
-            generateDateList();
+            generateDateList("201408");
+            registerDateInput();
         }
     });
 }
 
 // genearte date input table
-function generateDateList() {
+function generateDateList(monthValue) {
     var $portInput = $('#portInput');
     var port_name = $portInput.data('port_name');
     var $dateInput = $('#dateInput');
@@ -178,9 +178,8 @@ function generateDateList() {
         return;
     }
 
-    var month = '201408';
-    $dateInput.val('201408');
-    $dateInput.data('month', '201408');
+    $dateInput.val(monthValue);
+    $dateInput.data('month', monthValue);
 
     var $deviceInput = $('#deviceInput');
     var dev_name = $deviceInput.data('dev_name');
@@ -188,7 +187,7 @@ function generateDateList() {
     var portChartUrl = 'http://idcapi.uunus.com/billing/?where={'
         + '"dev_name":"' + dev_name + '",'
         + '"port_name":"' + port_name + '",'
-        + '"month":"' + month + '",'
+        + '"month":"' + monthValue + '",'
         + '"datetype":"' + 'all' + '",'
         + '"billing_method":"' + '95th' + '"}';
 
@@ -197,16 +196,19 @@ function generateDateList() {
 
 function ajaxGeneratePortArea(response) {
 
+    var $showArea = $('.showArea');
+
     if(response['error'] == 'true') {
         $.notifyBar({
             cssClass: "error",
-            html: "换取端口数据错误",
+            html: "获取端口数据错误",
             delay: 2000
         });
+        $showArea.hide();
         return;
     }
 
-    var $showArea = $('.showArea');
+
     var month_data = response['data']['month'];
     var allday_data = response['data']['allday'];
     $showArea.data('month_data', month_data);
@@ -215,6 +217,14 @@ function ajaxGeneratePortArea(response) {
     registerUiEvent($showArea);
     generateAreaChart($showArea);
 
+}
+
+function registerDateInput() {
+    var $dateInput = $('#dateInput');
+    $dateInput.on('change', function() {
+        var monthValue = $dateInput.val();
+        generateDateList(monthValue);
+    })
 }
 
 function registerUiEvent($showArea) {
