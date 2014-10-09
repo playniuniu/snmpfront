@@ -1,5 +1,11 @@
-/* For jquery datatable */
+/*Override fastly css*/
+@media (min-width: 1200px) {
+    .container {
+        width: 1000px;
+    }
+}
 
+/* For jquery datatable */
 .dataTables_filter {
     display: none;
 }
