@@ -155,7 +155,7 @@ function createPortList($inputTextBox, portData) {
         },
         onchange: function() {
             $inputTextBox.data('port_name', inputTable.id());
-            generateDateList("201504");
+            generateDateList("201508");
             registerDateInput();
         }
     });
